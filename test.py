@@ -13,7 +13,7 @@ import sys
 GPIB_ETHERNET_HOST_NAME = 'GPIB'
 MAX_COMMAND_TIMEOUT_SEC = 3
 
-MEASUREMENT_DELAY = 5.0
+MEASUREMENT_DELAY = 1.0
 
 # create and open the connection to the interface
 gpib = PrologixEthernetGPIB(GPIB_ETHERNET_HOST_NAME, MAX_COMMAND_TIMEOUT_SEC)
@@ -24,8 +24,11 @@ try:
 	gpib.write(":FUNC 'VOLT:DC'")
 	gpib.write(":VOLT:DC:RANGE 10")
 	gpib.write(":VOLT:DC:NPLC 10")			# 'slow' rate
-	gpib.write(":VOLT:DC:DIG 7")
+	gpib.write(":VOLT:DC:DIG MAX")
 	gpib.write(":FORMAT:DATA ASCII")
+	gpib.write(":VOLT:DC:AVER:TCON MOV")	# setup the averaging filter
+	gpib.write(":VOLT:DC:AVER:COUNT 10")	# 10 averages
+	gpib.write(":VOLT:DC:AVER:STATE ON")	# enable
 
 	# Configure the Keithley 196
 	gpib.select(11)
