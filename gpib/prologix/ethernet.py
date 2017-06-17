@@ -1,4 +1,4 @@
-from gpib.base import GPIBBase
+from gpib.base import GPIBBase, GPIBTimeout
 import socket
 
 class PrologixEthernetGPIB(GPIBBase):
@@ -34,7 +34,10 @@ class PrologixEthernetGPIB(GPIBBase):
 
 	def read(self, num_bytes=1024):
 		self._send('++read eoi')
-		return self._recv(num_bytes).strip(' \t\n\r')
+		try:
+			return self._recv(num_bytes).strip(' \t\n\r')
+		except socket.timeout:
+			raise GPIBTimeout()
 
 	def query(self, cmd, buffer_size=1024*1024):
 		self.write(self._escape(cmd))

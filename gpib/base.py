@@ -36,3 +36,8 @@ class GPIBBase(metaclass=ABCMeta):
 	def query(self, cmd, buffer_size):
 		"Send a command and read the response"
 		pass
+		
+
+class GPIBTimeout(Exception):
+	"This excpetion is raised if a communication timeout occurs during reading GPIB responses"
+
