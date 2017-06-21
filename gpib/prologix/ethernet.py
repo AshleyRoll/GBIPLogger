@@ -27,7 +27,10 @@ class PrologixEthernetGPIB(GPIBBase):
 		self.socket.close()
 
 	def select(self, addr):
-		self._send( '++addr %i' % int(addr) )
+		self._send('++addr %i' % int(addr))
+		
+	def interface_clear(self):
+		self._send('++ifc')
 
 	def write(self, cmd):
 		self._send(self._escape(cmd))

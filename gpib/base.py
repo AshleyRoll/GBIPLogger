@@ -23,6 +23,11 @@ class GPIBBase(metaclass=ABCMeta):
 		pass
 		
 	@abstractmethod
+	def interface_clear(self):
+		"Clear the GPIB interface and release the active device"
+		pass
+		
+	@abstractmethod
 	def write(self, cmd):
 		"Write a command to the device"
 		pass

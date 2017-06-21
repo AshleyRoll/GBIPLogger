@@ -28,12 +28,13 @@ def RunMeasurements():
 		gpib.select(10)
 		gpib.write(":FUNC 'VOLT:DC'")
 		gpib.write(":VOLT:DC:RANGE 10")
-		gpib.write(":VOLT:DC:NPLC 10")			# 'slow' rate
+		gpib.write(":VOLT:DC:NPLC 1")			# 10 = 'slow' rate, 1 = 'medium'
 		gpib.write(":VOLT:DC:DIG MAX")
 		gpib.write(":FORMAT:DATA ASCII")
 		gpib.write(":VOLT:DC:AVER:TCON MOV")	# setup the averaging filter
 		gpib.write(":VOLT:DC:AVER:COUNT 10")	# 10 averages
-		gpib.write(":VOLT:DC:AVER:STATE ON")	# enable
+		gpib.write(":VOLT:DC:AVER:STATE ON")	# enable filter
+		gpib.write(":INIT:CONT ON")				# continous trigger
 
 		# Configure the Keithley 196
 		gpib.select(11)
@@ -43,10 +44,11 @@ def RunMeasurements():
 		gpib.write('S3X')	# 6.5d rate
 		gpib.write('B0X')	# reading from ADC
 		gpib.write('G1X')	# data format without prefixes
-		gpib.write('P99X')	# Digital running average filter (max)
+		gpib.write('P10X')	# Digital running average filter (max)
 		gpib.write('N1X')	# Internal Filter for high sensitivity measurements enabled
-		gpib.write('T0X')	# continous trigger on Talk
 		gpib.write('A1X')	# enable Auto/Cal Multiplex
+		gpib.write('T4X')	# continous trigger on eXecute command
+		
 		
 
 		# CSV header row.
@@ -63,11 +65,14 @@ def RunMeasurements():
 			
 			# K2015
 			gpib.select(10)
-			measurements.append(float(gpib.query(":READ?")))
+			measurements.append(float(gpib.query(":FETCH?")))	# fetch current reading
 			
 			# K196
 			gpib.select(11)
-			measurements.append(float(gpib.read()))
+			measurements.append(float(gpib.read()))				# fetch current reading
+			
+			# Clear the bus
+			gpib.interface_clear()
 			
 			sys.stdout.write(','.join(str(x) for x in measurements))
 			sys.stdout.write('\n')
