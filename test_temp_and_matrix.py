@@ -52,10 +52,10 @@ def RunMeasurements():
 		
 		#
 		# Configure the Keithley 705 switch.
-		# This code assumes 2 * 7-52 3*5 Matrix cards
+		# This code assumes 2 * 7052 4*5 Matrix cards
 		# Column 01 - 05 is card slot 1
 		# Column 06 - 10 is card slot 2
-		# Rows are 1 - 4 (only 1 - 3 are used)
+		# Rows are 1 - 4
 		# The "channel" numbers are then ccr (eg Col 3, row 2 = 03:2) close is C03:2, open is N03:2
 		#
 		# We will use columns as inputs, and rows as outputs. Note that we can tie the cards together to get more
