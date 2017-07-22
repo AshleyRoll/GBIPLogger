@@ -12,13 +12,13 @@ from datetime import datetime
 import time
 import sys
 
-GPIB_ETHERNET_HOST_NAME = 'GPIB'
+GPIB_ETHERNET_HOST_NAME = '192.168.0.10'
 MAX_COMMAND_TIMEOUT_SEC = 3
 
 MEASUREMENT_DELAY = 5.0
 
-TMP_LOGGER_ADDR = 3
-MATRIX_SWITCH_ADDR = 4
+TMP_LOGGER_ADDR = 11
+MATRIX_SWITCH_ADDR = 10
 
 
 
@@ -71,6 +71,15 @@ def RunMeasurements():
 		gpib.write('A0X')		# Matrix mode
 		gpib.write('RX')		# Reset all channels
 		
+		# Row 1: K196
+		# Row 2: K2015
+		
+		# Col 1: EDC512
+		# Col 2: unused
+		
+		gpib.write('C01:1X')
+		gpib.write('C01:2X')
+		
 		gpib.write('B011X')		# temp.. display col 1 row 1
 		
 		
@@ -96,16 +105,16 @@ def RunMeasurements():
 			
 			
 			# K705
-			gpib.select(MATRIX_SWITCH_ADDR)
-			gpib.write('C01:1X')
-			time.sleep(0.1)				# do something
-			gpib.write('N01:1X')
-			gpib.write('C01:2X')
-			time.sleep(0.1)				# do something
-			gpib.write('N01:2X')
-			gpib.write('C01:3X')
-			time.sleep(0.1)				# do something
-			gpib.write('N01:3X')
+		#	gpib.select(MATRIX_SWITCH_ADDR)
+		#	gpib.write('C01:1X')
+		#	time.sleep(0.1)				# do something
+		#	gpib.write('N01:1X')
+		#	gpib.write('C01:2X')
+		#	time.sleep(0.1)				# do something
+		#	gpib.write('N01:2X')
+		#	gpib.write('C01:3X')
+		#	time.sleep(0.1)				# do something
+		#	gpib.write('N01:3X')
 			
 						
 			sys.stdout.write(','.join(str(x) for x in measurements))
