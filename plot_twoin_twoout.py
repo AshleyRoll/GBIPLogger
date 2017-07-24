@@ -37,9 +37,9 @@ k2015a_edcV_Y_avg = k2015a_edcV_Y.rolling(window=avgWindow).mean()
 k196a_edcV_Y = sourceData['K196A_EDC']
 k196a_edcV_Y_avg = k196a_edcV_Y.rolling(window=avgWindow).mean()
 
-k2015a_jvrV_Y = sourceData['K2015A_JFR']
+k2015a_jvrV_Y = sourceData['K2015A_JVR']
 k2015a_jvrV_Y_avg = k2015a_jvrV_Y.rolling(window=avgWindow).mean()
-k196a_jvrV_Y = sourceData['K196A_JFR']
+k196a_jvrV_Y = sourceData['K196A_JVR']
 k196a_jvrV_Y_avg = k196a_jvrV_Y.rolling(window=avgWindow).mean()
 
 plt.rcParams['font.size'] = 4
