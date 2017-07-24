@@ -118,7 +118,7 @@ def RunMeasurements():
 		
 		
 		# CSV header row.
-		sys.stdout.write('DateTime, TWindow, TRoom, K2015A_EDC, K196A_EDC, K2015A_JFR, K196A_JFR\n')
+		sys.stdout.write('DateTime, TWindow, TRoom, K2015A_EDC, K196A_EDC, K2015A_JVR, K196A_JVR\n')
 		
 		while True:
 			measurements = []
