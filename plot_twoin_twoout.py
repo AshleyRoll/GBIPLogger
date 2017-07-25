@@ -2,13 +2,14 @@
 Test Plotting routines from CSV
 """
 
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.ticker import FuncFormatter
  
 
-sourceFile = '../../log-edc-jvr.csv'
+sourceFile = sys.argv[1]
 
 avgWindow = 30		# 10 sec * 30 = 5 min average
 
