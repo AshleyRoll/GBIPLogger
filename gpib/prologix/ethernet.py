@@ -32,6 +32,9 @@ class PrologixEthernetGPIB(GPIBBase):
 	def interface_clear(self):
 		self._send('++ifc')
 
+	def selected_device_clear(self):
+		self._send('++clr')
+		
 	def write(self, cmd):
 		self._send(self._escape(cmd))
 
@@ -42,6 +45,13 @@ class PrologixEthernetGPIB(GPIBBase):
 		except socket.timeout:
 			raise GPIBTimeout()
 
+	def readeol(self, num_bytes=1024):
+		self._send('++read 10')	# read to LF character
+		try:
+			return self._recv(num_bytes).strip(' \t\n\r')
+		except socket.timeout:
+			raise GPIBTimeout()
+			
 	def query(self, cmd, buffer_size=1024*1024):
 		self.write(self._escape(cmd))
 		return self.read(buffer_size)	

@@ -28,6 +28,11 @@ class GPIBBase(metaclass=ABCMeta):
 		pass
 		
 	@abstractmethod
+	def selected_device_clear(self):
+		"Clear / reset the selected device"
+		pass
+		
+	@abstractmethod
 	def write(self, cmd):
 		"Write a command to the device"
 		pass
@@ -35,6 +40,11 @@ class GPIBBase(metaclass=ABCMeta):
 	@abstractmethod
 	def read(self, num_bytes):
 		"read a result from the device"
+		pass
+	
+	@abstractmethod
+	def readeol(self, num_bytes):
+		"read a result from the device until LF"
 		pass
 
 	@abstractmethod
