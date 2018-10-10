@@ -92,12 +92,13 @@ def DumpEproms():
 		# 0x???? - 6400002-04D	2Kx8 EPROM 131313120F0F0F0F0F0F0F0F0F0E0F10
 		# 
 		
-		ReadEprom(gpib, 0x2800, 0x0800, '6400003-05D-Read.hex')
+		#ReadEprom(gpib, 0x2800, 0x0800, '6400003-05D-Read.hex')
 
-		ReadEprom(gpib, 0xC000, 0x1000, '6500003-01D-Read.hex')
-		ReadEprom(gpib, 0xD000, 0x1000, '6500003-02D-Read.hex')
-		ReadEprom(gpib, 0xE000, 0x1000, '6500003-03D-Read.hex')
-		ReadEprom(gpib, 0xF000, 0x1000, '6500003-04D-Read.hex')
+		#ReadEprom(gpib, 0xC000, 0x1000, '6500003-01D-Read.hex')
+		#ReadEprom(gpib, 0xD000, 0x1000, '6500003-02D-Read.hex')
+		#ReadEprom(gpib, 0xE000, 0x1000, '6500003-03D-Read.hex')
+		#ReadEprom(gpib, 0xF000, 0x1000, '6500003-04D-Read.hex')
+		ReadEprom(gpib, 0x0000, 0x0800, '0000-07FF-Read.hex')
 		
 		
 	
